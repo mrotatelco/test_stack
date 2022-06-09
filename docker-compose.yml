@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   TimescaleDB:
-    image: mrotatelco/test_timescaledb:latest
+    image: mrotatelco/test_timescaledb:2.6.1-pg14
     ports:
       - 5432:5432
     volumes:
@@ -11,7 +11,7 @@ services:
       POSTGRES_PASSWORD: TelcoTest1
 
   Node-RED:
-    image: mrotatelco/test_node-red:latest
+    image: mrotatelco/test_node-red:2.2.2-14
     ports:
       - 1880:1880
     volumes:
