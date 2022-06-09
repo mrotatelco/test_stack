@@ -1,0 +1,34 @@
+version: "3.8"
+
+services:
+  TimescaleDB:
+    image: mrotatelco/test_timescaledb:latest
+    ports:
+      - 5432:5432
+    volumes:
+      - TimescaleDB_v:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: TelcoTest1
+
+  Node-RED:
+    image: mrotatelco/test_node-red:latest
+    ports:
+      - 1880:1880
+    volumes:
+      - Node-RED_v:/data
+    depends_on:
+      - TimescaleDB
+
+  Grafana:
+    image: grafana/grafana-enterprise:8.5.2
+    ports:
+      - 3000:3000
+    volumes:
+      - Grafana_v:/var/lib/grafana
+    depends_on:
+      - TimescaleDB
+
+volumes:
+  TimescaleDB_v:
+  Node-RED_v:
+  Grafana_v:
